@@ -1,12 +1,12 @@
-var express = require('express');
+const express = require('express');
  
-var controller = require('./opportunity.controller');
-var router = express.Router();
+const controller = require('./opportunity.controller');
+const router = express.Router();
   
-router.get('/', controller.getMany);
-router.get('/:id', controller.getOne);
-router.post('/', controller.add);
-router.post('/:id', controller.edit);
-router.delete('/:id', controller.delete);
+router.post('/create', controller.create);
+router.get('/getOpps', controller.getAll);
+router.get('/getOne/:id', controller.getOne);
+router.put('/update/:id', controller.update);
+router.delete('/delete/:id', controller.delete);
 
 module.exports = router;

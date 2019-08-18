@@ -1,12 +1,28 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var Project = new Schema({
-    _id: {type: Schema.Types.ObjectId, auto: true },
-    name: {type: String},
-    from: {type: String},
-    to: {type: String},
-    status: {type: String}
-})
+// Schema
+const projectSchema = new mongoose.Schema({
+    projectName : String,
+    clientName: String,
+    task : [{
+        taskName: String,
+        asignedTeam: String,
+        taskStatus: String,
+        taskDuration: Number,
+        taskStartDate: Date,
+        taskEndDate: Date,
+    }],
+    cost: Number,
+    priority: Number,
+    projectStatus: String,
+    projectDuration: Number,
+    projectStartDate: Date,
+    projectEndDate: Date,
+    progress: Number
+});
 
-module.exports = mongoose.model('Project', Project);
+// model
+const Project = mongoose.model('Project', projectSchema);
+
+module.exports = { Project : Project };
+

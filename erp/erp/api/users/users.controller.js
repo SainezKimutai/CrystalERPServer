@@ -4,6 +4,8 @@
  var mailservice = require('../services/mail.service');
  const bcrypt = require('bcrypt');
 
+ const userService = require('../services/user.service');
+
 
  //get all users...
  exports.getMany = (req, res) => {
@@ -40,13 +42,14 @@
 //add a user...
  
  exports.add = (req, res) => {
+
     User.findOne({email: req.body.email }, (err, user) => {
         if ( err) {
-            return res.status(400).json({'msg': err});
+            return res.status(500).json({'msg': err});
         }
 
         if (user) {
-            return res.status(400).json({'msg': 'The user already exists'});
+            return res.status(409).json({'msg': 'The user already exists'});
     }
     var user = new User({
         name: req.body.name,
@@ -72,6 +75,8 @@
         res.status(201).json(result);
     });
   });
+
+
  }
 //edit a user...
  exports.edit = (req, res) => {
@@ -116,32 +121,14 @@
     });
  }
 
+
+// Login
+exports.login = (req, res, next) => {
+
+    userService.authenticate(req.body)
+        .then(user => user ? res.json(user) : res.status(401).json({ message: 'Email or password is incorrect' }))
+        .catch(err => next(err));
  
-exports.login = (req, res) => {
-    if (!req.body.email || !req.body.password) {
-        return res.status(400).send({ 'msg': 'You need to send email and password' });
-    }
-    console.log(req.body.email)
-    User.findOne({'email':req.body.email} , function(err, user) {
-        if(err){
-            console.log(err)
-            return res.status(500).send({ 'msg': 'Internal Server Error. Please Check Your Server' });
-             
-        }
-        if(!user) {
-            return res.status(404).send({ 'msg': 'The Email or Password is not Found. Please Try Again' });
-        }
-        else {
-            user.authenticate(req.body.password, function(err, result) {
-                if(result && !err){
-                    res.json(user);
-                }
-                else {
-                    res.status(401).send({ 'msg': 'You are not authorised.' });
-                }
-            });
-        }
-    });
 };
 
   

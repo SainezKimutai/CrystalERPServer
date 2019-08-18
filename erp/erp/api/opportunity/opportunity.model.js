@@ -1,11 +1,26 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var Opportunity = new Schema({
-    _id: {type: Schema.Types.ObjectId, auto: true },
-    name: {type: String},
-    visible: {type: String},
-    status: {type: String}
-})
+// Schema
+const opportunitySchema = new mongoose.Schema({
+    projectName : String,
+    clientName: String,
+    task : [{
+        taskName: String,
+        asignedTeam: String,
+        taskStatus: String,
+        taskDuration: Number,
+        taskStartDate: Date,
+        taskEndDate: Date,
+    }],
+    cost: Number,
+    priority: Number,
+    projectStatus: String,
+    projectDuration: Number,
+    projectStartDate: Date,
+    projectEndDate: Date
+});
 
-module.exports = mongoose.model('Opportunity', Opportunity);
+// model
+const Opportunity = mongoose.model('Opportunity', opportunitySchema);
+
+module.exports = { Opportunity : Opportunity };

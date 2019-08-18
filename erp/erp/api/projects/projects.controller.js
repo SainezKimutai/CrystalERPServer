@@ -1,87 +1,53 @@
-var Project = require('./projects.model');
+const projectService = require("../services/project.service.js");
 
-exports.getMany = (req, res) => {
+// Create
+exports.create = (req, res, next) => {
 
-    var search = {
-        name: { $regex: req.query.name, $options: "i" }
-    }
+    // console.log(req.body);
+    projectService.create(req.body)
+        .then(proj => proj ? res.json(proj) : res.status(409).json({ message: 'Project already Exists' }))
+        .catch(err => next(err));
+ 
+};
 
-    var query = (req.query.name) ? search: {};
-    Project.find(query).sort({name: 1}).exec
-    (function (err, projects) {
-            if(err){
-                return res.status(500).json(err);
-            }
-            res.status(200).json(projects);
-    }
-    )
 
-}
+// Get All
+exports.getAll = (req, res, next) => {
+    projectService.getAll()
+        .then(projs => { res.json(projs); })
+        .catch(err => next(err));
+};
 
-exports.getOne = (req, res) => {
 
-    Project.findById(req.params.id, function (err, project) {
-        if(err) {
-            return res.status(500).json(err);
-        }
-        if(!project){
-            return res.status(404).json('Not found.');
-        }
-        res.status(200).json(project);
-    });
 
-}
+// Get One
+exports.getOne = (req, res, next) => {
+    // console.log(req.params.id);
+    projectService.getOne(req.params.id)
+            .then(projs => projs ? res.json(projs) : res.sendStatus(404))
+            .catch(err => next(err));
+};
 
-exports.add = (req, res) => {
-    var project = new Project({
-        name: req.body.name,
-        
-    });
-    project.save(function(err, result) {
-        if(err) {
-            return res.status(500).json(err);
-        }
-        res.status(201).json(result);
-    });
-}
 
-exports.edit = (req, res) => {
 
-    Project.findById(req.params.id, function (err, project) {
-        if(err) {
-            return res.status(500).json(err);
-        }
-        if(!project) {
-            return res.status(404).json(err);
-        }
-         
-        project.name = req.body.name || project.name,
-         
-        project.save(function(err, result) {
-            if(err) {
-                return res.status(500).json(err);
-            }
-            res.status(201).json(result);
-        });
-    });
+// Update
+exports.update = (req, res, next) => {
+    projectService.update(req.params.id, req.body)
+        .then((proj)=> res.json(proj))
+        .catch(err => next(err));
+};
 
-}
 
-exports.delete = (req, res) => {
 
-    Project.findById(req.params.id, function (err, project) {
-        if(err) {
-            return res.status(500).json(err);
-        }
-        if(!project) {
-            return res.status(404).json(err);
-        }
-        project.remove(function(err, result) {
-            if(err) {
-                return res.status(500).json(err);
-            }
-            res.status(204).json(result);
-        });
-    });  
+// Delete
+exports.delete = (req, res, next) => {
+    projectService.delete(req.params.id)
+        .then(()=> res.json({}))
+        .catch(err => next(err));
+};
 
-}
+
+
+
+
+
