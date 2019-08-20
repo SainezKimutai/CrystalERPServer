@@ -1,6 +1,6 @@
 const CustomService = require("../customary/customary.model.js").CustomService;
 
-// Create Custome Service
+// Create Custom Service
 async function create(serviceParam){
     // Validate
     if (await CustomService.findOne({ serviceName: serviceParam.serviceName })) {
@@ -13,7 +13,7 @@ async function create(serviceParam){
     // Save custom service
     await service.save();
     
-    return await CustomService.findOne({ serviceName: service.serviceName });
+    return CustomService.findOne({ serviceName: service.serviceName });
 
 }
 

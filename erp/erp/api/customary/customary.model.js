@@ -5,7 +5,7 @@ const customarySchema = new mongoose.Schema({
     serviceName : String,
     task : [{
         taskName: String,
-        asignedTeam: String
+        assignedTeam: String
     }]
 });
 

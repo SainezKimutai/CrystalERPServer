@@ -13,7 +13,7 @@ async function create(teamParam){
     // Save User
     await team.save();
     
-    return await Teams.findOne({ name: team.name });
+    return Teams.findOne({ name: team.name });
 
 }
 

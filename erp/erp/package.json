@@ -89,7 +89,8 @@
     "snapdragon-util": "^3.0.1",
     "socket.io": "^2.2.0",
     "source-map": "^0.5.7",
-    "source-map-url": "^0.4.0"
+    "source-map-url": "^0.4.0",
+    "body-parser": "latest"
   },
   "devDependencies": {},
   "scripts": {

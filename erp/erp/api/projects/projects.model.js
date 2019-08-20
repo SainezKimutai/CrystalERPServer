@@ -6,7 +6,7 @@ const projectSchema = new mongoose.Schema({
     clientName: String,
     task : [{
         taskName: String,
-        asignedTeam: String,
+        assignedTeam: String,
         taskStatus: String,
         taskDuration: Number,
         taskStartDate: Date,

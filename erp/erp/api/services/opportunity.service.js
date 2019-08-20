@@ -12,7 +12,7 @@ async function create(opportunityParam){
     // Save Opp
     await opp.save();
     
-    return await Opportunity.findOne({ projectName: opp.projectName, clientName: opp.clientName });
+    return Opportunity.findOne({ projectName: opp.projectName, clientName: opp.clientName });
 
 }
 
@@ -25,7 +25,7 @@ async function getAll() {
 
 // Get One
 async function getOne(_id) {
-    return await Opportunity.findById(_id);
+    return Opportunity.findById(_id);
 }
 
 
@@ -41,7 +41,7 @@ async function update(id, oppParam) {
 
     await Opp.save();
 
-    return await Opportunity.findById(id);
+    return Opportunity.findById(id);
 
 }
 

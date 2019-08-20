@@ -12,7 +12,7 @@ async function create(salesCatParam){
     // Save sales Cat
     await salescat.save();
     
-    return await SalesCategory.findOne({ name: salescat.name });
+    return SalesCategory.findOne({ name: salescat.name });
 
 }
 
@@ -25,7 +25,7 @@ async function getAll() {
 
 // Get One
 async function getOne(_id) {
-    return await SalesCategory.findById(_id);
+    return SalesCategory.findById(_id);
 }
 
 
