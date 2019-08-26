@@ -41,6 +41,8 @@ async function update(id, catParam) {
 
     await Cat.save();
 
+    return await SalesCategory.find({});
+
 }
 
 

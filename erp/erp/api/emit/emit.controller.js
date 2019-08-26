@@ -12,34 +12,34 @@ setInterval(()=>{
     // Send Custom Services
     Project.find({})
         .then((data)=>{ io.emit('/listProjects', data)})
-        .catch((err)=>{ console.log(err) })
+        .catch((err)=>{ console.log(err) });
     
 
     // Send Opportunity data
     Opportunity.find({})
         .then((data)=>{ io.emit('/listOppProjects', data) })
-        .catch((err)=>{ console.log(err) })
+        .catch((err)=>{ console.log(err) });
 
     // Send teams
     Teams.find({})
         .then((data)=>{ io.emit('/listTeams', data) })
-        .catch((err)=>{ console.log(err) })
+        .catch((err)=>{ console.log(err) });
 
     // Send Custom Services
     CustomService.find({})
         .then((data)=>{ io.emit('/listCustomServices', data)})
-        .catch((err)=>{ console.log(err) })
+        .catch((err)=>{ console.log(err) });
 
     // Send Custom Services
     SalesCategory.find({})
         .then((data)=>{ io.emit('/listSalesCategory', data)})
-        .catch((err)=>{ console.log(err) })
+        .catch((err)=>{ console.log(err) });
     
 
-}, 700)
+}, 700);
 
 
 
 
-}
+};
 

@@ -32,7 +32,7 @@ exports.getOne = (req, res, next) => {
 // Update
 exports.update = (req, res, next) => {
     salesCategoryService.update(req.params.id, req.body)
-        .then(()=> res.json({}))
+        .then((cat)=> res.json(cat))
         .catch(err => next(err));
 };
 

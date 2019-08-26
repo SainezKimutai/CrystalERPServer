@@ -8,6 +8,6 @@ let config = {
     // Secret Key
     Secret: 'Imprint-Platform'
 
-}
+};
 
 module.exports = config;

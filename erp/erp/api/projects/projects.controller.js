@@ -36,7 +36,6 @@ exports.oneToGantt = (req, res, next) => {
     projectService.getOne(req.params.id)
         .then(project =>{
             if(project){
-                let i = 1;
                 let task = project.task.filter(task=>{
                     return true
                 }).map(task=>
@@ -62,7 +61,9 @@ exports.oneToGantt = (req, res, next) => {
 // Update
 exports.update = (req, res, next) => {
     projectService.update(req.params.id, req.body)
-        .then((proj)=> res.json(proj))
+        .then((project)=> {
+            res.json(project);
+        })
         .catch(err => next(err));
 };
 

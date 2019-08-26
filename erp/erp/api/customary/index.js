@@ -4,7 +4,7 @@ const controller = require('./customary.controller.js');
 const router = express.Router();
   
 router.post('/create', controller.create);
-router.get('/getServices', controller.getAll);
+router.get('/getAll', controller.getAll);
 router.delete('/:id', controller.delete);
 
 module.exports = router;

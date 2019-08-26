@@ -10,7 +10,7 @@ const projectSchema = new mongoose.Schema({
         taskStatus: String,
         taskDuration: Number,
         taskStartDate: Date,
-        taskEndDate: Date,
+        taskEndDate: Date
     }],
     cost: Number,
     priority: Number,

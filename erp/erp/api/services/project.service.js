@@ -12,7 +12,7 @@ async function create(projectParam){
     // Save proj
     await proj.save();
     
-    return await Project.findOne({ projectName: proj.projectName, clientName: proj.clientName });
+    return Project.findOne({ projectName: proj.projectName, clientName: proj.clientName });
 
 }
 
@@ -25,7 +25,7 @@ async function getAll() {
 
 // Get One
 async function getOne(_id) {
-    return await Project.findById(_id);
+    return Project.findById(_id);
 }
 
 
@@ -41,7 +41,7 @@ async function update(id, projParam) {
 
     await Proj.save();
 
-    return await Project.findById(id);
+    return Project.findById(id);
 }
 
 
