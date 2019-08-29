@@ -7,6 +7,7 @@ const http = require('http');
 const server = http.createServer(app);
 const socketIO = require('socket.io');
 const io = socketIO.listen(server);
+const jwtRouteAuth = require('./helper/jwtAuthentication.js');
 
 
 const config = require('./config');
@@ -22,6 +23,9 @@ app.use(cors());
 // Bordy parser
 app.use(bodyParser.json());
 app.use(urlencodedParser);
+
+// Authenticate Requests to the api
+app.use(jwtRouteAuth());
  
 const logRequestStart = (req, res, next) => {
   console.info(`${req.method} ${req.originalUrl}`);

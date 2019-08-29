@@ -16,6 +16,10 @@ async function create(serviceParam){
     return CustomService.findOne({ serviceName: service.serviceName });
 
 }
+// Get One
+async function getOne(id) {
+    return CustomService.findById(id);
+}
 
 
 // Get All custom services
@@ -24,10 +28,27 @@ async function getAll() {
 }
 
 
+// Update Opp
+async function update(id, serviceParam) {
+    let service = await CustomService.findById(id);
+
+    // Validate
+    if (!service) throw 'Service not Found';
+
+    // Copy oppParam
+    Object.assign(service, serviceParam);
+
+    await service.save();
+
+    return CustomService.findById(id);
+}
+
+
+
 //Delete service
 async function _delete(id) {
     await CustomService.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, delete: _delete };
+module.exports = { create, getAll, getOne, update, delete: _delete };
 

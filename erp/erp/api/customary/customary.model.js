@@ -6,7 +6,8 @@ const customarySchema = new mongoose.Schema({
     task : [{
         taskName: String,
         assignedTeam: String
-    }]
+    }],
+    targetRevenue: Number
 });
 
 // model

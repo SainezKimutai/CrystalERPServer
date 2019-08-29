@@ -5,11 +5,13 @@
   "main": "router.js",
   "dependencies": {
     "bcrypt": "^3.0.6",
+    "body-parser": "latest",
     "collection-visit": "^1.0.0",
     "cors": "^2.8.5",
     "define-property": "^2.0.2",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.4",
+    "express-jwt": "^5.3.1",
     "extend-shallow": "^3.0.2",
     "fragment-cache": "^0.2.1",
     "fsevents": "^1.2.9",
@@ -89,8 +91,7 @@
     "snapdragon-util": "^3.0.1",
     "socket.io": "^2.2.0",
     "source-map": "^0.5.7",
-    "source-map-url": "^0.4.0",
-    "body-parser": "latest"
+    "source-map-url": "^0.4.0"
   },
   "devDependencies": {},
   "scripts": {

@@ -11,10 +11,27 @@ exports.create = (req, res, next) => {
 };
 
 
+// Get One
+exports.getOne = (req, res, next) => {
+    console.log(req.params.id);
+    customaryService.getOne(req.params.id)
+        .then(service => service ? res.json(service) : res.sendStatus(404))
+        .catch(err => next(err));
+};
+
 // Get All
 exports.getAll = (req, res, next) => {
     customaryService.getAll()
         .then(services => { res.json(services); })
+        .catch(err => next(err));
+};
+
+
+
+// Update
+exports.update = (req, res, next) => {
+    customaryService.update(req.params.id, req.body)
+        .then((service)=> res.json(service))
         .catch(err => next(err));
 };
 
