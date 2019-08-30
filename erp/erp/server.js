@@ -45,14 +45,21 @@ mongoose.connect(config.mongo.url, {useNewUrlParser: true, useCreateIndex: true}
 }).catch(r =>{ console.log('Database Not Connected!!')});
 
 
-routes.register(app);
 
 // import Emit
 let Emit = require('./api/emit/emit.controller.js');
+
 Emit(app, io);
+
+
 
 //Socket Connection
 io.on('connection', function(){});
+
+routes.register(app);
+
+
+
 
 // Listening to port
 server.listen(3000, () => {

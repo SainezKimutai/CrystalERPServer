@@ -5,7 +5,7 @@ exports.create = (req, res, next) => {
 
     // console.log(req.body);
     opportunityService.create(req.body)
-        .then(opp => opp ? res.json(opp) : res.status(409).json({ message: 'Lead already Exists' }))
+        .then(opp => opp ?  res.json(opp): res.status(409).json({ message: 'Lead already Exists' }))
         .catch(err => next(err));
  
 };
@@ -14,7 +14,7 @@ exports.create = (req, res, next) => {
 // Get All
 exports.getAll = (req, res, next) => {
     opportunityService.getAll()
-        .then(opps => { res.json(opps); })
+        .then(opps => { res.json(opps);  })
         .catch(err => next(err));
 };
 
@@ -24,7 +24,7 @@ exports.getAll = (req, res, next) => {
 exports.getOne = (req, res, next) => {
     // console.log(req.params.id);
     opportunityService.getOne(req.params.id)
-            .then(Opp => Opp ? res.json(Opp) : res.sendStatus(404))
+            .then(Opp => Opp ? res.json(Opp): res.sendStatus(404))
             .catch(err => next(err));
 };
 
@@ -33,7 +33,7 @@ exports.getOne = (req, res, next) => {
 // Update
 exports.update = (req, res, next) => {
     opportunityService.update(req.params.id, req.body)
-        .then((Opp)=> res.json(Opp))
+        .then((Opp)=> {res.json(Opp);})
         .catch(err => next(err));
 };
 
@@ -42,7 +42,7 @@ exports.update = (req, res, next) => {
 // Delete
 exports.delete = (req, res, next) => {
     opportunityService.delete(req.params.id)
-        .then(()=> res.json({}))
+        .then(()=> {res.json({});})
         .catch(err => next(err));
 };
 

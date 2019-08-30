@@ -1,3 +1,4 @@
+const User = require('../users/users.model.js');
 const Project = require("../projects/projects.model.js").Project;
 const Opportunity = require('../opportunity/opportunity.model.js').Opportunity;
 const Teams = require('../teams/teams.model.js').Teams;
@@ -10,14 +11,19 @@ module.exports = function(app, io){
 setInterval(()=>{
 
     // Send Custom Services
+    User.find({})
+        .then((data)=>{ io.emit('/listUsers', data)})
+        .catch((err)=>{ console.log(err) });
+
+
+    // Send Custom Services
     Project.find({})
         .then((data)=>{ io.emit('/listProjects', data)})
         .catch((err)=>{ console.log(err) });
     
-
     // Send Opportunity data
     Opportunity.find({})
-        .then((data)=>{ io.emit('/listOppProjects', data) })
+        .then((data)=>{ io.emit('/listOppProjects', data); })
         .catch((err)=>{ console.log(err) });
 
     // Send teams
