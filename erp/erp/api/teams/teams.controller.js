@@ -19,6 +19,24 @@ exports.getAll = (req, res, next) => {
 };
 
 
+
+// Get One
+exports.getOne = (req, res, next) => {
+    teamService.getOne(req.params.id)
+        .then(team => team ? res.json(team): res.sendStatus(404))
+        .catch(err => next(err));
+};
+
+
+
+// Update
+exports.update = (req, res, next) => {
+    teamService.update(req.params.id, req.body)
+        .then((team)=> {res.json(team);})
+        .catch(err => next(err));
+};
+
+
 // Delete
 exports.delete = (req, res, next) => {
     teamService.delete(req.params.id)
