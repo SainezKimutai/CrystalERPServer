@@ -23,8 +23,8 @@ exports.getAll = (req, res, next) => {
 exports.getOne = (req, res, next) => {
     // console.log(req.params.id);
     salesCategoryService.getOne(req.params.id)
-            .then(cat => cat ? res.json(cat) : res.sendStatus(404))
-            .catch(err => next(err));
+        .then(cat => cat ? res.json(cat) : res.status(404).json({ message: 'Not fount'}))
+        .catch(err => next(err));
 };
 
 
