@@ -2,7 +2,7 @@ const Client = require("../clients/clients.model.js").Client;
 
 
 async function create(clientParam){
-    if (await Client.findOne({ name: clientParam.name })) {
+    if (await Client.findOne({ companyName: clientParam.companyName })) {
         return;
     }
 
@@ -10,7 +10,7 @@ async function create(clientParam){
 
     await client.save();
     
-    return Client.findOne({ name: client.name });
+    return Client.findOne({ companyName: client.companyName });
 
 }
 
@@ -24,6 +24,12 @@ async function getAll() {
 async function getOne(_id) {
     return Client.findById(_id);
 }
+
+
+async function getByName(clientParam) {
+    return await Client.findOne({ companyName: clientParam });
+}
+
 
 
 async function update(id, clientParam) {
@@ -46,5 +52,5 @@ async function _delete(id) {
     await Client.deleteOne({_id: id});
 }
 
-module.exports = { create, getAll, getOne, update, delete: _delete };
+module.exports = { create, getAll, getOne, getByName, update, delete: _delete };
 

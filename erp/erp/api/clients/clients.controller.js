@@ -1,4 +1,5 @@
 const clientService = require("../services/client.service");
+const mailService = require("../services/mail.service");
 
 
 exports.create = (req, res, next) => {
@@ -21,6 +22,12 @@ exports.getOne = (req, res, next) => {
         .catch(err => next(err));
 };
 
+exports.getByName = (req, res, next) => {
+    clientService.getByName(req.params.name)
+        .then(client => client ? res.json(client):  res.status(401).json({ message: 'No Client'}))
+        .catch(err => next(err));
+};
+
 
 exports.update = (req, res, next) => {
     clientService.update(req.params.id, req.body)
@@ -34,3 +41,11 @@ exports.delete = (req, res, next) => {
         .then(()=> {res.json({});})
         .catch(err => next(err));
 };
+
+
+exports.sendMail = (req, res, next) => {
+    mailService.sendMailToClient(req.body)
+        .then(client => client ? res.json(client):  res.status(401).json({ message: 'No Client'}))
+        .catch(err => next(err));
+};
+
