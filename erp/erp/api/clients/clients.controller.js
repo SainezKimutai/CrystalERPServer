@@ -45,7 +45,7 @@ exports.delete = (req, res, next) => {
 
 exports.sendMail = (req, res, next) => {
     mailService.sendMailToClient(req.body)
-        .then(client => client ? res.json(client):  res.status(401).json({ message: 'No Client'}))
-        .catch(err => next(err));
+        .then(e =>res.json({}))
+        .catch(err => res.sendStatus(401));
 };
 

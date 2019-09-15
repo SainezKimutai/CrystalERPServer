@@ -5,9 +5,9 @@ async function create(opportunityParam){
     if (await Opportunity.findOne({ projectName: opportunityParam.projectName, clientName: opportunityParam.clientName })) {
         return;
     }
-
+    
     let opp = new Opportunity(opportunityParam);
-
+  
     await opp.save();
     
     return Opportunity.findOne({ projectName: opp.projectName, clientName: opp.clientName });
@@ -32,7 +32,6 @@ async function update(id, oppParam) {
 
     if (!Opp) throw 'Project not Found';
 
-   
     Object.assign(Opp, oppParam);
 
     await Opp.save();

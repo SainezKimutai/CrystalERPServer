@@ -7,6 +7,7 @@
     app.use('/api/salesCategory', require('./api/salesCategory'));
     app.use('/api/userSalesStages', require('./api/userSalesStages'));
     app.use('/api/clients', require('./api/clients'));
+    app.use('/api/calenderEvents', require('./api/calenderEvents'));
 };
 
 

@@ -1,37 +1,80 @@
 const nodemailer = require('nodemailer');
 
- 'use strict';
-async function sendMailToClient(reqParam){ 
 
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-               user: 'kimutai@imprintaf.com',
-               pass: 'saineZ@13'
-           },
-        tls: {
-            rejectUnauthorized: false
-        }
-       });
+// function sendingMailToClient(reqParam){ 
 
-    const mailOptions = {
-        from: 'kimutai@imprintaf.com',  
-        to: 'sainezamon@gmail.com',  
-        subject: 'TESTING',  
-        text: 'Hello sainez'
-    };
-    transporter.sendMail(mailOptions, function (err, data) {
-        if(err){
-            console.log(err)
-        }else{
-            console.log('Success')
-            return;
-        }
+//     let transporter = await nodemailer.createTransport({
+//         host: 'smtp.gmail.com',
+//         port: 465,
+//         secure: true,
+//         auth: {
+//                user: reqParam.sender,
+//                pass: 'saineZ@13'
+//            },
+//         tls: {
+//             rejectUnauthorized: false
+//         }
+//        });
 
-     });
+//     const mailOptions = {
+//         from: reqParam.sender,  
+//         to: reqParam.reciever,  
+//         subject: reqParam.subject,  
+//         text: reqParam.message
+//     };
 
- }
+//     transporter.sendMail(mailOptions, function (err, data) {
+//         if(err){
+//             console.log('Error')
+//             return false;
+//         }else{ 
+//             console.log('success')      
+//             return true;
+//         }
+
+//      });
+
+
+//  }
+
+
+
+
+
+
+
+
+ function sendMailToClient(reqParam){
+
+    return new Promise((resolve, reject)=>{
+
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true,
+            auth: {
+                   user: reqParam.sender,
+                   pass: 'saineZ@13'
+               },
+            tls: {
+                rejectUnauthorized: false
+            }
+           });
+    
+        const mailOptions = {
+            from: reqParam.sender,  
+            to: reqParam.reciever,  
+            subject: reqParam.subject,  
+            text: reqParam.message
+        };
+    
+        transporter.sendMail(mailOptions, function (err, data) {
+            !err ? resolve() : reject('Something went wrong');
+         });
+    
+
+    });
+}
+
 
  module.exports = { sendMailToClient }
