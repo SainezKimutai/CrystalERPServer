@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const calenderEventSchema = new mongoose.Schema({
     title: String,
     assignedUser: String,
+    projectId: { type: mongoose.Schema.Types.Mixed},
     start: Date,
     end: Date,
     color: {
