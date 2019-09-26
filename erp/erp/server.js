@@ -10,7 +10,6 @@ const io = socketIO.listen(server);
 const jwtRouteAuth = require('./helper/jwtAuthentication.js');
 const Emit = require('./api/emit/emit.controller.js');
 
-
 const config = require('./config');
 const routes = require('./router');
 //var morgan = require('morgan');
