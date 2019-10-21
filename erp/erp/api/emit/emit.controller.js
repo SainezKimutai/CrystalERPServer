@@ -8,6 +8,7 @@ const UserSalesStage = require("../userSalesStages/userSalesStages.model.js").Us
 const Client = require("../clients/clients.model.js").Client;
 const CalenderEvent = require("../calenderEvents/calenderEvent.model.js").CalenderEvent;
 const SalesNote = require("../salesNote/salesNote.model.js").SalesNote;
+const DocPad = require("../docPad/docPad.model.js").DocPad;
 
 
 module.exports = function(app, io){
@@ -57,6 +58,10 @@ module.exports = function(app, io){
     SalesNote.find({})
         .then((data)=>{ io.emit('/listSalesNotes', data)})
         .catch((err)=>{ console.log('Could Not emit SalesNotes') });
+
+    DocPad.find({})
+        .then((data)=>{ io.emit('/listDocPad', data)})
+        .catch((err)=>{ console.log('Could Not emit DocPad') });
     
 };
 

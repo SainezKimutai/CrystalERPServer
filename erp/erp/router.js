@@ -9,6 +9,7 @@
     app.use('/api/clients', require('./api/clients'));
     app.use('/api/calenderEvents', require('./api/calenderEvents'));
     app.use('/api/salesNotes', require('./api/salesNote'));
+    app.use('/api/docPad', require('./api/docPad'));
 };
 
 

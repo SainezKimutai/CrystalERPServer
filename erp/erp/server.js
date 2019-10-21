@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(urlencodedParser);
 
 // Authenticate Requests to the api
-app.use(jwtRouteAuth());
+// app.use(jwtRouteAuth());
  
 const logRequestStart = (req, res, next) => {
   console.info(`${req.method} ${req.originalUrl}`);
