@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({extended: true});
+const urlencodedParser = bodyParser.urlencoded({limit: '20mb', extended: true});
 const http = require('http');
 const server = http.createServer(app);
 const socketIO = require('socket.io');
@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cors());
 
 // Bordy parser
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '20mb'}));
 app.use(urlencodedParser);
 
 // Authenticate Requests to the api
