@@ -14,12 +14,13 @@ const opportunitySchema = new mongoose.Schema({
         taskStartDate: Date,
         taskEndDate: Date,
     }],
-    cost: Number,
+    revenue: Number,
     priority: Number,
     projectStatus: String,
     projectDuration: Number,
     projectStartDate: Date,
-    projectEndDate: Date
+    projectEndDate: Date,
+    createdOn: Date,
 });
 
 // model

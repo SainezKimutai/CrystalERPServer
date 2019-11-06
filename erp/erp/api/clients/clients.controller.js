@@ -4,7 +4,7 @@ const mailService = require("../services/mail.service");
 
 exports.create = (req, res, next) => {
     clientService.create(req.body)
-        .then(client => client ?  res.json(client): res.status(409).json({ message: 'Client already Exists' }))
+        .then(client => client ?  res.status(200).json({ message: 'New Client Added' }): res.status(200).json({ message: 'New deal to existing client' }))
         .catch(err => next(err));
 };
 

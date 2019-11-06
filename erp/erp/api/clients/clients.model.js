@@ -10,7 +10,8 @@ const clientSchema = new mongoose.Schema({
     website : String,
     twitter : String,
     facebook : String,
-    instagram : String    
+    instagram : String,
+    createdOn: Date,
 });
 
 // model
