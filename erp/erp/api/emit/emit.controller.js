@@ -9,6 +9,7 @@ const Client = require("../clients/clients.model.js").Client;
 const CalenderEvent = require("../calenderEvents/calenderEvent.model.js").CalenderEvent;
 const SalesNote = require("../salesNote/salesNote.model.js").SalesNote;
 const DocPad = require("../docPad/docPad.model.js").DocPad;
+const Invoice = require("../invoice/invoice.model.js").Invoice;
 
 
 module.exports = function(app, io){
@@ -62,6 +63,10 @@ module.exports = function(app, io){
     DocPad.find({})
         .then((data)=>{ io.emit('/listDocPad', data)})
         .catch((err)=>{ console.log('Could Not emit DocPad') });
+
+    Invoice.find({})
+        .then((data)=>{ io.emit('/listInvoices', data)})
+        .catch((err)=>{ console.log('Could Not emit Invoices') });
     
 };
 
