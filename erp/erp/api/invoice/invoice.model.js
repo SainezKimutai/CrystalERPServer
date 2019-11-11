@@ -19,6 +19,7 @@ const invoiceSchema = new mongoose.Schema({
     untaxedAmount: Number,
     totalTax: Number,
     totalAmount: Number,
+    invoiceType: String,
     termsAndConditions: String
 
 });
