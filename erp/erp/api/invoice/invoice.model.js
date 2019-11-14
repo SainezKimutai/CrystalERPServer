@@ -16,7 +16,11 @@ const invoiceSchema = new mongoose.Schema({
         date: String,
         departure: String,
         arrival: String,
-        class: String
+        class: String,
+        costPerPerson: Number,
+        persons: Number,
+        totalCost: Number,
+        
     }],
     untaxedAmount: Number,
     totalTax: Number,

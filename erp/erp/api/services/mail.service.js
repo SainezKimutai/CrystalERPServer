@@ -2,6 +2,36 @@ const nodemailer = require('nodemailer');
 const sgTransport = require('nodemailer-sendgrid-transport'); 
 
 
+
+function sendInvoiceToClient(reqParam){
+    return new Promise((resolve, reject)=>{
+
+        let options = {
+            auth: {
+                api_user: 'SainezKimutai', // Sendgrid username
+                api_key: 'saineZ@13' // Sendgrid password
+            }
+        }
+
+        let transporter = nodemailer.createTransport(sgTransport(options));
+    
+        let email = {
+            from: reqParam.sender, 
+            to: reqParam.reciever,  
+            subject: reqParam.subject,  
+            text: reqParam.message
+        };
+    
+        transporter.sendMail(email, function (err, data) {
+            !err ? resolve() : reject('Something went wrong');
+         });
+    
+    });
+}
+
+
+
+
  function sendMailToClient(reqParam){
     return new Promise((resolve, reject)=>{
 
@@ -59,4 +89,4 @@ function inviteUser(reqParam){
 
 
 
- module.exports = { sendMailToClient, inviteUser }
+ module.exports = { sendMailToClient, inviteUser, sendInvoiceToClient }

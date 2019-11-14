@@ -1,4 +1,5 @@
 const invoiceService = require("../services/invoice.service.js");
+const mailService = require("../services/mail.service");
 
 exports.create = (req, res, next) => {
     invoiceService.create(req.body)
@@ -28,4 +29,10 @@ exports.delete = (req, res, next) => {
     invoiceService.delete(req.params.id)
         .then(()=> res.json({}))
         .catch(err => next(err));
+};
+
+exports.sendInvoice= (req, res, next) => {
+    mailService.sendInvoiceToClient(req.body)
+        .then(e =>res.json({}))
+        .catch(err => res.sendStatus(401));
 };
