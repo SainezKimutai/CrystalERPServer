@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 // Schema
 const invoiceSchema = new mongoose.Schema({
+    invoiceType: String,
     customerName: String,
     paymentTerms: String,
     invoiceNumber: String,
@@ -18,16 +19,31 @@ const invoiceSchema = new mongoose.Schema({
         arrival: String,
         class: String,
         costPerPerson: Number,
-        persons: Number,
-        totalCost: Number,
-        
+        persons: {
+            adult: Number,
+            child: Number,
+            infant: Number
+        },
+        totalPersons: Number,
+        totalCost: Number
     }],
-    untaxedAmount: Number,
-    totalTax: Number,
     totalAmount: Number,
-    invoiceType: String,
-    termsAndConditions: String
-
+    accomodation: [{
+            hotel: String,
+            roomType: String,
+            mealPlan: String,
+            city: String,
+            nights: Number,
+            single: Number,
+            double: Number,
+            childWithBed: Number
+    }],
+    airlineInclusion: [{
+        content: String
+    }],
+    airlineExclusion: [{
+        content: String
+    }]
 });
 
 // model

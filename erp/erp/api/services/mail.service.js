@@ -14,16 +14,16 @@ function sendInvoiceToClient(reqParam){
         }
 
         let transporter = nodemailer.createTransport(sgTransport(options));
-    
+
         let email = {
             from: reqParam.sender, 
             to: reqParam.reciever,  
-            subject: reqParam.subject,  
-            text: reqParam.message
+            subject: reqParam.subject, 
+            html: reqParam.html,
         };
     
         transporter.sendMail(email, function (err, data) {
-            !err ? resolve() : reject('Something went wrong');
+            !err ? resolve() : console.log(err);
          });
     
     });

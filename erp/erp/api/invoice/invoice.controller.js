@@ -34,5 +34,5 @@ exports.delete = (req, res, next) => {
 exports.sendInvoice= (req, res, next) => {
     mailService.sendInvoiceToClient(req.body)
         .then(e =>res.json({}))
-        .catch(err => res.sendStatus(401));
+        .catch(err => {res.sendStatus(401); console.log(err)});
 };

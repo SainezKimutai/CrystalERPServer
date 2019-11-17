@@ -9,7 +9,7 @@ const socketIO = require('socket.io');
 const io = socketIO.listen(server);
 const jwtRouteAuth = require('./helper/jwtAuthentication.js');
 const Emit = require('./api/emit/emit.controller.js');
-
+const fileUpload = require('express-fileupload');
 const config = require('./config');
 const routes = require('./router');
 //var morgan = require('morgan');
@@ -19,6 +19,7 @@ app.use(express.urlencoded({extended: false}));
 
 //cors
 app.use(cors());
+app.use(fileUpload());
 
 // Bordy parser
 app.use(bodyParser.json({limit: '20mb'}));
