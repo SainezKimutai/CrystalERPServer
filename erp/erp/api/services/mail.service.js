@@ -12,14 +12,20 @@ function sendInvoiceToClient(reqParam){
                 api_key: 'saineZ@13' // Sendgrid password
             }
         }
-
+        
         let transporter = nodemailer.createTransport(sgTransport(options));
-
         let email = {
             from: reqParam.sender, 
             to: reqParam.reciever,  
             subject: reqParam.subject, 
             html: reqParam.html,
+            attachments: [{
+                filename: 'QuotationFromCrystalTours.pdf',
+                content: reqParam.attachment,
+                contentType: 'application/pdf',
+                encoding: 'base64'
+
+            }]
         };
     
         transporter.sendMail(email, function (err, data) {
