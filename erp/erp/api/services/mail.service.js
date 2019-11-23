@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const sgTransport = require('nodemailer-sendgrid-transport'); 
+const sgTransport = require('nodemailer-sendgrid-transport');
 
 
 
@@ -12,12 +12,12 @@ function sendInvoiceToClient(reqParam){
                 api_key: 'saineZ@13' // Sendgrid password
             }
         }
-        
+
         let transporter = nodemailer.createTransport(sgTransport(options));
         let email = {
-            from: reqParam.sender, 
-            to: reqParam.reciever,  
-            subject: reqParam.subject, 
+            from: reqParam.sender,
+            to: reqParam.reciever,
+            subject: reqParam.subject,
             html: reqParam.html,
             attachments: [{
                 filename: 'QuotationFromCrystalTours.pdf',
@@ -27,11 +27,11 @@ function sendInvoiceToClient(reqParam){
 
             }]
         };
-    
+
         transporter.sendMail(email, function (err, data) {
             !err ? resolve() : console.log(err);
          });
-    
+
     });
 }
 
@@ -49,18 +49,18 @@ function sendInvoiceToClient(reqParam){
         }
 
         let transporter = nodemailer.createTransport(sgTransport(options));
-    
+
         let email = {
-            from: reqParam.sender, 
-            to: reqParam.reciever,  
-            subject: reqParam.subject,  
+            from: reqParam.sender,
+            to: reqParam.reciever,
+            subject: reqParam.subject,
             text: reqParam.message
         };
-    
+
         transporter.sendMail(email, function (err, data) {
             !err ? resolve() : reject('Something went wrong');
          });
-    
+
     });
 }
 
@@ -76,19 +76,19 @@ function inviteUser(reqParam){
         }
 
         let transporter = nodemailer.createTransport(sgTransport(options));
-    
+
         let email = {
-            from: reqParam.sender, 
-            to: reqParam.reciever,  
-            subject: "Invitation To Imprint ERP",  
+            from: reqParam.sender,
+            to: reqParam.reciever,
+            subject: "Invitation To Imprint ERP",
             text: 'Hello',
-            html: 'You have been invited to Crystal ERP. Please click on the link below to register:<br><br> <button style="margin-left:70px;border:none;padding:7px;border-radius:5px;background-color:teal;color:white;"><a style="color:white;font-size:14px;font-family:verdana" href="http://localhost/register/' + reqParam.reciever + '/' + reqParam.token + '">Invitation</a></button>'
+            html: 'You have been invited to Crystal ERP. Please click on the link below to register:<br><br> <button style="margin-left:70px;border:none;padding:7px;border-radius:5px;background-color:teal;color:white;"><a style="color:white;font-size:14px;font-family:verdana" href="http://localhost:4200/register/' + reqParam.reciever + '/' + reqParam.token + '">Invitation</a></button>'
         };
-    
+
         transporter.sendMail(email, function (err, data) {
             !err ? resolve() : reject('Something went wrong');
          });
-    
+
 
     });
 }

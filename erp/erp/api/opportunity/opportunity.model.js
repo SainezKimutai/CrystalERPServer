@@ -20,6 +20,7 @@ const opportunitySchema = new mongoose.Schema({
     projectDuration: Number,
     projectStartDate: Date,
     projectEndDate: Date,
+    createdBy: String,
     createdOn: Date,
 });
 
