@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 const Schema = mongoose.Schema;
 
 const User = new Schema({
@@ -13,18 +13,15 @@ const User = new Schema({
 User.pre('save', function (next) {
     if(this.password) {
         if(this.isModified('password') || this.isNew) {
-            this.createSalt((saltErr, salt ) => {
-                if (saltErr) {
-                    return next(saltErr);
-                }
-                this.hash(this.password, salt, (hashErr, hash) => {
+
+                this.hash(this.password, (hashErr, hash) => {
                     if(hashErr) {
                         return next(hashErr);
                     }
                     this.password = hash;
                     return next();
                 });
-            });
+
         }
         else {
             return next();
@@ -36,24 +33,13 @@ User.pre('save', function (next) {
 });
 
 User.methods = {
-    
-    createSalt(callback){
-        return bcrypt.genSalt(function(err, salt) {
+    hash(password, callback){
+        return bcrypt.hash(password,null, null, function(err, hash){
             if(err) {
                 return callback(err);
             }
             else {
-                return callback(null, salt);
-            }
-        });
-    },
-    hash(password, salt, callback){
-        return bcrypt.hash(password, salt, function(err, hash){
-            if(err) {
-                return callback(err);
-            }
-            else {
-                
+
                 return callback(null, hash)
             }
         });

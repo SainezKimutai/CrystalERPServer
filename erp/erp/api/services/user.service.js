@@ -1,6 +1,6 @@
 const Secret = require('../../config/dev').Secret;
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 const User = require('../users/users.model');
 
 
@@ -71,6 +71,3 @@ async function _delete(id) {
 }
 
 module.exports = { authenticate, create, getAll, getOne, update, delete: _delete };
-
-
-
