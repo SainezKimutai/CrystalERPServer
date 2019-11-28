@@ -11,6 +11,5 @@
     app.use('/api/salesNotes', require('./api/salesNote'));
     app.use('/api/docPad', require('./api/docPad'));
     app.use('/api/invoice', require('./api/invoice'));
+    app.use('/api/salesSentEmail', require('./api/salesSentEmail'));
 };
-
-

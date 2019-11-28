@@ -10,6 +10,7 @@ const CalenderEvent = require("../calenderEvents/calenderEvent.model.js").Calend
 const SalesNote = require("../salesNote/salesNote.model.js").SalesNote;
 const DocPad = require("../docPad/docPad.model.js").DocPad;
 const Invoice = require("../invoice/invoice.model.js").Invoice;
+const SalesSentEmail = require("../salesSentEmail/salesSentEmail.model.js").SalesSentEmail;
 
 
 module.exports = function(app, io){
@@ -22,7 +23,7 @@ module.exports = function(app, io){
     Project.find({})
         .then((data)=>{ io.emit('/listProjects', data)})
         .catch((err)=>{ console.log('Could Not emit Projects')  });
-    
+
 
     Opportunity.find({})
         .then((data)=>{ io.emit('/listOppProjects', data);})
@@ -67,6 +68,9 @@ module.exports = function(app, io){
     Invoice.find({})
         .then((data)=>{ io.emit('/listInvoices', data)})
         .catch((err)=>{ console.log('Could Not emit Invoices') });
-    
-};
 
+    SalesSentEmail.find({})
+        .then((data)=>{ io.emit('/listSalesSentEmail', data)})
+        .catch((err)=>{ console.log('Could Not emit SalesSentEmail') });
+
+};

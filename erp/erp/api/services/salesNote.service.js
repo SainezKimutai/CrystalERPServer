@@ -1,9 +1,7 @@
 const SalesNote = require("../salesNote/salesNote.model.js").SalesNote;
 
-async function create(salesNoteParam){   
-    console.log(salesNoteParam)
+async function create(salesNoteParam){
     const salesnote = new SalesNote(salesNoteParam);
-    console.log(salesnote)
     await salesnote.save();
     return SalesNote.find({});
 }
@@ -19,10 +17,10 @@ async function getOne(_id) {
 async function update(id, noteParam) {
     let Note = await SalesNote.findById(id);
 
-   
+
     if (!Note) throw 'Note not Found';
 
-    
+
     Object.assign(Note, noteParam);
 
     await Note.save();

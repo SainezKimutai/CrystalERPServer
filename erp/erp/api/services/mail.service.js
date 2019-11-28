@@ -82,7 +82,7 @@ function inviteUser(reqParam){
             to: reqParam.reciever,
             subject: "Invitation To Imprint ERP",
             text: 'Hello',
-            html: 'You have been invited to Crystal ERP. Please click on the link below to register:<br><br> <button style="margin-left:70px;border:none;padding:7px;border-radius:5px;background-color:teal;color:white;"><a style="color:white;font-size:14px;font-family:verdana" href="http://localhost:4200/register/' + reqParam.reciever + '/' + reqParam.token + '">Invitation</a></button>'
+            html: 'You have been invited to Crystal CRM. Please click on the link below to register:<br><br> <button style="margin-left:70px;border:none;padding:7px;border-radius:5px;background-color:teal;color:white;"><a style="color:white;font-size:14px;font-family:verdana" href="http://crystal.imprintafrica.co.ke/register/' + reqParam.reciever + '/' + reqParam.token + '">Invitation</a></button>'
         };
 
         transporter.sendMail(email, function (err, data) {
