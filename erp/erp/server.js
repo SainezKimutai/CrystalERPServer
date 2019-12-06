@@ -9,21 +9,23 @@ const socketIO = require('socket.io');
 const io = socketIO.listen(server);
 const jwtRouteAuth = require('./helper/jwtAuthentication.js');
 const Emit = require('./api/emit/emit.controller.js');
-// const fileUpload = require('express-fileupload');
+const fileUpload = require('express-fileupload');
+
 const config = require('./config');
 const routes = require('./router');
-//var morgan = require('morgan');
-//var morganext = require('mongo-morgan-ext');
+
 const mongoose = require('mongoose');
 app.use(express.urlencoded({extended: false}));
 
 //cors
 app.use(cors());
-// app.use(fileUpload());
 
 // Bordy parser
 app.use(bodyParser.json({limit: '20mb'}));
 app.use(urlencodedParser);
+
+
+app.use(fileUpload());
 
 // Authenticate Requests to the api
 // app.use(jwtRouteAuth());
@@ -47,7 +49,6 @@ app.use(logRequestStart);
 mongoose.connect(config.mongo.url, {useNewUrlParser: true, useCreateIndex: true}).then(r =>{
   console.log('Database Connected...');
 }).catch(r =>{ console.log('Database Not Connected!!')});
-
 
 
 //Socket Connection

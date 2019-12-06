@@ -36,3 +36,15 @@ exports.sendInvoice= (req, res, next) => {
         .then(e =>res.json({}))
         .catch(err => {res.sendStatus(401); console.log(err)});
 };
+
+exports.upload = (req, res, next) => {
+  invoiceService.upload(req)
+    .then((e) => (console.log(e),res.json({imageName: e})))
+    .catch(err => {res.sendStatus(401); console.log(err)})
+}
+
+exports.remove = (req, res, next) => {
+  invoiceService.remove(req.params.name)
+    .then(()=> res.json({}))
+    .catch(err => next(err));
+}

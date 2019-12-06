@@ -38,14 +38,27 @@ const invoiceSchema = new mongoose.Schema({
             double: Number,
             childWithBed: Number
     }],
+    totalAccomodationSingle: Number,
+    totalAccomodationDouble: Number,
+    totalAccomodationChild: Number,
     airlineInclusion: [{
         content: String
     }],
     airlineExclusion: [{
         content: String
+    }],
+    itinerary: [{
+      content: String,
+      image: {
+        name: String,
+        url: String
+      },
     }]
 });
-
+// {
+//   content: String,
+//   image: String
+// }
 // model
 const Invoice = mongoose.model('Invoice', invoiceSchema);
 
