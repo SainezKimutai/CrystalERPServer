@@ -51,7 +51,8 @@ const invoiceSchema = new mongoose.Schema({
       content: String,
       image: {
         name: String,
-        url: String
+        url: String,
+        bs64: String
       },
     }]
 });
