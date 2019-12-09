@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({limit: '20mb', extended: true});
+const urlencodedParser = bodyParser.urlencoded({limit: '20mb', extended: true, parameterLimit:50000});
 const http = require('http');
 const server = http.createServer(app);
 const socketIO = require('socket.io');
@@ -25,7 +25,9 @@ app.use(bodyParser.json({limit: '20mb'}));
 app.use(urlencodedParser);
 
 
-app.use(fileUpload());
+app.use(fileUpload({
+  limits: { fileSize: 50 * 1024 * 1024 },
+}));
 
 // Authenticate Requests to the api
 // app.use(jwtRouteAuth());
