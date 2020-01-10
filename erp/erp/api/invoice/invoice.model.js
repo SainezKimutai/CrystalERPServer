@@ -19,6 +19,8 @@ const invoiceSchema = new mongoose.Schema({
         arrival: String,
         class: String,
         costPerPerson: Number,
+        costPerChild: Number,
+        costPerInfant: Number,
         persons: {
             adult: Number,
             child: Number,

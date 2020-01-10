@@ -1,21 +1,21 @@
 const nodemailer = require('nodemailer');
-const sgTransport = require('nodemailer-sendgrid-transport');
+// const sgTransport = require('nodemailer-sendgrid-transport');
+const SmtpTransport = require('nodemailer-smtp-transport');
 
 
 
 function sendInvoiceToClient(reqParam){
     return new Promise((resolve, reject)=>{
+      let options = {
+          host: "crystaltourskenya.com",
+          port: 465,
+          auth: {
+              user: 'erp@crystaltourskenya.com',
+              pass: 'Globaldistruption@2020'
+          }
+      }
 
-        let options = {
-            host: "crystaltourskenya.com",
-            port: 465,
-            auth: {
-                user: 'erp@crystaltourskenya.com',
-                pass: 'Globaldistruption@2020'
-            }
-        }
-
-        let transporter = nodemailer.createTransport((options));
+        let transporter = nodemailer.createTransport(options);
 
         let email = {
             from: reqParam.sender,
@@ -53,7 +53,7 @@ function sendInvoiceToClient(reqParam){
           }
       }
 
-        let transporter = nodemailer.createTransport((options));
+        let transporter = nodemailer.createTransport(options);
 
         let email = {
             from: reqParam.sender,
@@ -82,7 +82,7 @@ function inviteUser(reqParam){
           }
       }
 
-        let transporter = nodemailer.createTransport((options));
+        let transporter = nodemailer.createTransport(options);
 
         let email = {
             from: reqParam.sender,
