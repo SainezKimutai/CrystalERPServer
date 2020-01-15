@@ -7,11 +7,12 @@ const SmtpTransport = require('nodemailer-smtp-transport');
 function sendInvoiceToClient(reqParam){
     return new Promise((resolve, reject)=>{
       let options = {
-          host: "crystaltourskenya.com",
+          host: "smtp.gmail.com",
           port: 465,
+          secure: true,
           auth: {
-              user: 'erp@crystaltourskenya.com',
-              pass: 'Globaldistruption@2020'
+              user: 'grace@crystaltourskenya.com',
+              pass: '24705814'
           }
       }
 
@@ -45,11 +46,12 @@ function sendInvoiceToClient(reqParam){
     return new Promise((resolve, reject)=>{
 
       let options = {
-          host: "crystaltourskenya.com",
+          host: "smtp.gmail.com",
           port: 465,
+          secure: true,
           auth: {
-              user: 'erp@crystaltourskenya.com',
-              pass: 'Globaldistruption@2020'
+              user: 'grace@crystaltourskenya.com',
+              pass: '24705814'
           }
       }
 
@@ -74,11 +76,12 @@ function inviteUser(reqParam){
     return new Promise((resolve, reject)=>{
 
       let options = {
-          host: "crystaltourskenya.com",
+          host: "smtp.gmail.com",
           port: 465,
+          secure: true,
           auth: {
-              user: 'erp@crystaltourskenya.com',
-              pass: 'Globaldistruption@2020'
+              user: 'grace@crystaltourskenya.com',
+              pass: '24705814'
           }
       }
 
