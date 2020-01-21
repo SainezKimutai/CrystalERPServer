@@ -1,11 +1,12 @@
 const nodemailer = require('nodemailer');
-// const sgTransport = require('nodemailer-sendgrid-transport');
-const SmtpTransport = require('nodemailer-smtp-transport');
+const sgTransport = require('nodemailer-sendgrid-transport');
+// const SmtpTransport = require('nodemailer-smtp-transport');
 
 
 
 function sendInvoiceToClient(reqParam){
     return new Promise((resolve, reject)=>{
+
       let options = {
           host: "smtp.gmail.com",
           port: 465,
@@ -14,13 +15,14 @@ function sendInvoiceToClient(reqParam){
               user: 'grace@crystaltourskenya.com',
               pass: '24705814'
           }
-      }
+        }
 
-        let transporter = nodemailer.createTransport(options);
+      let transporter = nodemailer.createTransport((options));
 
         let email = {
             from: reqParam.sender,
             to: reqParam.reciever,
+            bcc: reqParam.sender,
             subject: reqParam.subject,
             html: reqParam.html,
             attachments: [{
@@ -53,13 +55,14 @@ function sendInvoiceToClient(reqParam){
               user: 'grace@crystaltourskenya.com',
               pass: '24705814'
           }
-      }
+        }
 
-        let transporter = nodemailer.createTransport(options);
+      let transporter = nodemailer.createTransport((options));
 
         let email = {
             from: reqParam.sender,
             to: reqParam.reciever,
+            bcc: reqParam.sender,
             subject: reqParam.subject,
             text: reqParam.message
         };
@@ -83,17 +86,25 @@ function inviteUser(reqParam){
               user: 'grace@crystaltourskenya.com',
               pass: '24705814'
           }
-      }
+        }
 
-        let transporter = nodemailer.createTransport(options);
+      let transporter = nodemailer.createTransport(options);
 
         let email = {
-            from: reqParam.sender,
-            to: reqParam.reciever,
-            subject: "Invitation To Crystal Crm",
-            text: 'Hello',
-            html: 'You have been invited to Crystal CRM. Please click on the link below to register:<br><br> <button style="margin-left:70px;border:none;padding:7px;border-radius:5px;background-color:teal;color:white;"><a style="color:white;font-size:14px;font-family:verdana" href="https://crm-crystaltours.com/register/' + reqParam.reciever + '/' + reqParam.token + '">Invitation</a></button>'
-        };
+              from: reqParam.sender,
+              to: reqParam.reciever,
+              subject: "Invitation To Crystal Crm",
+              html: ' <section style="width: 400px; height: 200px; background-color: #f6f6f6; margin: 20px 100px; border-radius: 2px; border: solid 1px #4ec293; padding: 1em;">' +
+                '<div style="font-size: 13px; margin-bottom: 20px;"> Hello </div>' +
+                '<div style="font-size: 12px; margin-bottom: 20px;">You have been invited to Crystal CRM. Please click on the invitation button to register.</div>' +
+                '<div style="margin-bottom: 20px;">'+
+                    '<a style="font-size: 13px; background-color: #4ec293; border-radius: 2px; color: white; border: none; cursor: pointer; padding: 8px;" '+
+                    ' href="https://crm-crystaltours.com/register/' + reqParam.reciever + '/' + reqParam.token + '">Invitation</a>'+
+                '</div>'+
+                '<div style="font-size: 10px; font-style: italic;">www.crystaltourskenya.com</div>'+
+              '</section>'
+          };
+
 
         transporter.sendMail(email, function (err, data) {
             !err ? resolve() : reject('Something went wrong');
@@ -106,38 +117,3 @@ function inviteUser(reqParam){
 
 
  module.exports = { sendMailToClient, inviteUser, sendInvoiceToClient }
-
-
-
-
-
-
-
- //
- // return new Promise((resolve, reject)=>{
- //
- //        let options = {
- //            host: "smtp.gmail.com",
- //            port: 465,
- //            auth: {
- //                user: 'muindegeofrey@gmail.com',
- //                pass: 'Gracemakau2019'
- //            }
- //        }
- //
- //        let transporter = nodemailer.createTransport((options));
- //
- //        let email = {
- //            from: reqParam.sender,
- //            to: reqParam.reciever,
- //            subject: "Invitation To Aidy",
- //            text: 'Hello',
- //            html: 'You have been invited to Aidy. Please click on the link below to register:<br><br> <button style="margin-left:70px;border:none;padding:7px;border-radius:5px;background-color:teal;color:white;"><a style="color:white;font-size:14px;font-family:verdana" href="http://localhost/register/' + reqParam.reciever + '/' + reqParam.token + '">Invitation</a></button>'
- //        };
- //
- //        transporter.sendMail(email, function (err, data) {
- //            !err ? resolve() : reject('Something went wrong');
- //         });
- //
- //
- //    });

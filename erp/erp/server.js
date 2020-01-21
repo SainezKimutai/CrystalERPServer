@@ -9,7 +9,7 @@ const server = http.createServer(app);
 const socketIO = require('socket.io');
 const io = socketIO.listen(server);
 const jwtRouteAuth = require('./helper/jwtAuthentication.js');
-const Emit = require('./api/emit/emit.controller.js');
+// const Emit = require('./api/emit/emit.controller.js');
 const fileUpload = require('express-fileupload');
 
 const config = require('./config');
@@ -30,6 +30,8 @@ app.use(fileUpload({
   limits: { fileSize: 50 * 1024 * 1024 },
 }));
 
+
+
 // Authenticate Requests to the api
 // app.use(jwtRouteAuth());
 
@@ -38,9 +40,9 @@ const logRequestStart = (req, res, next) => {
 
   res.on('finish', () => {
       console.info(`${res.statusCode} ${res.statusMessage}; ${res.get('Content-Length') || 0}b sent`)
-      setTimeout(()=>{
-        Emit(app, io);
-      }, 1)
+      // setTimeout(()=>{
+      //   Emit(app, io);
+      // }, 1)
   });
 
   next()
@@ -55,7 +57,7 @@ mongoose.connect(config.mongo.url, {useNewUrlParser: true, useCreateIndex: true}
 
 
 //Socket Connection
-io.on('connection', function(){});
+// io.on('connection', function(){});
 
 routes.register(app);
 
