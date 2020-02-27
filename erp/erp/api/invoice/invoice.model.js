@@ -10,6 +10,7 @@ const invoiceSchema = new mongoose.Schema({
     dueDate: String,
     salesPerson: String,
     createdOn: Date,
+    currency: String,
     items: [{
         flight: String,
         from: String,

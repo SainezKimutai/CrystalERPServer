@@ -8,12 +8,12 @@ function sendInvoiceToClient(reqParam){
     return new Promise((resolve, reject)=>{
 
       let options = {
-          host: "smtp.gmail.com",
+          host: "crystaltourskenya.com",
           port: 465,
           secure: true,
           auth: {
-              user: 'grace@crystaltourskenya.com',
-              pass: '24705814'
+              user: 'erp@crystaltourskenya.com',
+              pass: 'Globaldistruption@2020'
           }
         }
 
@@ -35,7 +35,7 @@ function sendInvoiceToClient(reqParam){
         };
 
         transporter.sendMail(email, function (err, data) {
-            !err ? resolve() : console.log(err);
+            !err ? resolve() : console.log(err); reject('Something went wrong');
          });
 
     });
