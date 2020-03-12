@@ -7,15 +7,24 @@ const sgTransport = require('nodemailer-sendgrid-transport');
 function sendInvoiceToClient(reqParam){
     return new Promise((resolve, reject)=>{
 
-      let options = {
-          host: "crystaltourskenya.com",
-          port: 465,
-          secure: true,
-          auth: {
-              user: 'erp@crystaltourskenya.com',
-              pass: 'Globaldistruption@2020'
+      // let options = {
+      //     host: "crystaltourskenya.com",
+      //     port: 465,
+      //     secure: true,
+      //     auth: {
+      //         user: 'erp@crystaltourskenya.com',
+      //         pass: 'Globaldistruption@2020'
+      //     }
+      //   }
+        let options = {
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            auth: {
+                user: 'grace@crystaltourskenya.com',
+                pass: '24705814'
+            }
           }
-        }
 
       let transporter = nodemailer.createTransport((options));
 
